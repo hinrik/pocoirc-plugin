@@ -13,15 +13,17 @@ any_moose('::Exporter')->setup_import_methods(
 sub init_meta {
     my ($class, %args) = @_;
 
-    eval qq<
-        package $args{for_class};
-        use POE::Component::IRC::Plugin qw(:ALL);
-    >;
-
     any_moose()->init_meta(
         for_class  => $args{for_class},
         base_class => 'Pocoirc::Plugin::Object',
     );
+
+    eval qq<
+        package $args{for_class};
+        use Any::Moose;
+        use POE::Component::IRC::Plugin qw(:ALL);
+    >;
+
     return;
 }
 
@@ -57,11 +59,10 @@ Pocoirc::Plugin - Moose (or Mouse) sugar for PoCo-IRC plugins
  }
 
 
- # and now with a POE session
+ # and now with a POE session, courtesy of MooseX::POE/MouseX::POE
  package MyPluginWithPOE;
 
  use Pocoirc::Plugin;
- use Any::Moose;
  with any_moose('X::POE::Role');
 
  sub START {
@@ -81,6 +82,12 @@ Pocoirc::Plugin - Moose (or Mouse) sugar for PoCo-IRC plugins
 
 This is a module which uses Moose (or Mouse) to simplify PoCo-IRC plugin
 writing. It will automatically register any plugin event handlers for you.
+
+L<POE::Component::IRC::Plugin|POE::Component::IRC::Plugin> and
+L<Any::Moose|Any::Moose> are automatically L<C<use>|use>d in your package,
+giving you all the plugin handler constants as well as the
+L<C<any_moose>|Any::Moose/COMPLEX USAGE> function to help with loading
+Moose/Mouse modules.
 
 =head1 ATTRIBUTES
 

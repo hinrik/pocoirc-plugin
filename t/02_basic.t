@@ -28,7 +28,7 @@ use Test::More tests => 6;
 
     sub ADD {
         my ($self, $irc, @args) = @_;
-        pass('Got ADD');
+        pass('Got ADD, using '.any_moose());
         return 1;
     }
 
