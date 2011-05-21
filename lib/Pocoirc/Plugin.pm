@@ -79,8 +79,8 @@ Pocoirc::Plugin - Moose (or Mouse) sugar for PoCo-IRC plugins
 
 =head1 DESCRIPTION
 
-This is a module which uses Moose to simplify PoCo-IRC plugin writing. It
-will automatically register any plugin event handlers for you.
+This is a module which uses Moose (or Mouse) to simplify PoCo-IRC plugin
+writing. It will automatically register any plugin event handlers for you.
 
 =head1 ATTRIBUTES
 
