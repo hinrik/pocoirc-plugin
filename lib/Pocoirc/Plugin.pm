@@ -84,8 +84,8 @@ This is a module which uses Moose (or Mouse) to simplify PoCo-IRC plugin
 writing. It will automatically register any plugin event handlers for you.
 
 L<POE::Component::IRC::Plugin|POE::Component::IRC::Plugin> and
-L<Any::Moose|Any::Moose> are automatically L<C<use>|use>d in your package,
-giving you all the plugin handler constants as well as the
+L<Any::Moose|Any::Moose> are automatically L<C<use>|perlfunc>d in your
+package, giving you all the plugin handler constants as well as the
 L<C<any_moose>|Any::Moose/COMPLEX USAGE> function to help with loading
 Moose/Mouse modules.
 
