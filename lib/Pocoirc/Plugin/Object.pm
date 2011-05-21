@@ -27,8 +27,7 @@ sub PCI_register {
     $add_args->{$irc} = \%args;
 
     my $deps = $self->_dependencies;
-    my @plugins = values %{ $irc->plugin_list };
-    my @missing = grep { my $dep = $_; !first { $_->isa($dep) } @plugins } @$deps;
+    my @missing = grep { !$irc->plugin_by_role($_) } @$deps;
     if (@missing) {
         die ref($self)." needs the following plugins to be loaded:\n"
             . join('', map { "  $_\n" } @missing);

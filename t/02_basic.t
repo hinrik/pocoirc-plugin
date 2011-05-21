@@ -19,6 +19,8 @@ use Test::More tests => 6;
     use Pocoirc::Plugin;
 #    with 'FooRole';
 
+    depends_on('POE::Component::IRC::Plugin::ISupport');
+
     has foo => (
         isa => 'Str',
         is => 'rw',

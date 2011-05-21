@@ -2,12 +2,12 @@ package Pocoirc::Plugin;
 
 use 5.010;
 use Any::Moose;
-use Any::Moose 'Exporter';
+use Any::Moose '::Exporter';
 use namespace::clean -except => 'meta';
 
 any_moose('::Exporter')->setup_import_methods(
-    also        => any_moose(),
-    with_caller => [qw(depends_on)],
+    also  => any_moose(),
+    as_is => [qw(depends_on)],
 );
 
 sub init_meta {
@@ -26,9 +26,8 @@ sub init_meta {
 }
 
 sub depends_on {
-    my ($caller, @plugins) = @_;
-    my $class = any_moose('::Meta::Class')->initialize($caller);
-    $class->add_method('_build__dependencies', sub { [@plugins] });
+    my ($meta, @plugins) = (caller->meta, @_);
+    $meta->add_method('_build__dependencies', sub { [@plugins] });
     return;
 }
 
