@@ -51,7 +51,7 @@ Pocoirc::Plugin - Moose (or Mouse) sugar for PoCo-IRC plugins
 
  sub S_bot_addressed {
      my ($self, $irc) = splice @_, 0, 2;
-     my $msg = ${ $_[ARG2] };
+     my $msg = ${ $_[2] };
 
      # deal with public messages...
 
@@ -71,7 +71,7 @@ Pocoirc::Plugin - Moose (or Mouse) sugar for PoCo-IRC plugins
 
  sub S_public {
      my ($self, $irc) = splice @_, 0, 2;
-     my $msg = ${ $_[ARG2] };
+     my $msg = ${ $_[2] };
 
      # deal with public messages...
 
