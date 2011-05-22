@@ -13,18 +13,15 @@ any_moose('::Exporter')->setup_import_methods(
 sub init_meta {
     my ($class, %args) = @_;
 
-    any_moose()->init_meta(
-        for_class  => $args{for_class},
-        base_class => 'Pocoirc::Plugin::Object',
-    );
-
     eval qq<
         package $args{for_class};
-        use Any::Moose;
         use POE::Component::IRC::Plugin qw(:ALL);
     >;
 
-    return;
+    return any_moose()->init_meta(
+        for_class  => $args{for_class},
+        base_class => 'Pocoirc::Plugin::Object',
+    );
 }
 
 sub depends_on {
